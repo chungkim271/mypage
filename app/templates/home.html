@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html> 
+    <head>
+        <title> Chung Kim </title>
+    	<script src="/static/js/jquery-3.4.1.js"></script>
+		<script src="/static/js/jquery-ui.js"></script>
+ 
+		<script type="text/javascript" src="/static/js/jquery.fileupload.js"></script>
+		<script type="text/javascript" src="/static/js/jquery.fileupload-process.js"></script>
+		<script type="text/javascript" src="/static/js/jquery.fileupload-ui.js"></script>	
+
+        <link rel="stylesheet" href="/static/styles.css">
+		<script>
+			$(function() {
+			    $('#fileupload').fileupload({
+                    width: 300,
+			        url: 'upload',
+			        dataType: 'json',
+                    replaceFileInput:false,
+			        add: function(e, data) {
+			            data.submit()
+			        },
+			        success: function(response, status) {
+		                console.log(response.filename)
+						var filePath = 'static/uploads/' + response.filename
+						$('#imgUpload').attr('src',filePath)
+                        $('#container-pred').removeClass("hidden")
+						$('#filePath').text(filePath)
+                        $('#pred').text(' ')
+			        },
+			        error: function(error) {
+			            console.log(error)
+			        }
+			    })
+			})
+			$(function() {
+				$('#predict').click(function(e) {
+					e.preventDefault()
+                    $('#predict').text('Predicting...')
+                    data = {f_name:$('#filePath')[0].textContent}
+				    $.ajax({
+				        type: "POST",
+				        url: "/predict",
+                        data: JSON.stringify(data, null, '\t'),
+                        contentType: 'application/json;charset=UTF-8',
+				        success: function(response, status) {
+				        	pred = response.pred
+				        	$('#pred').text(pred)
+                            $('#predict').text('Predict')
+				        },
+				        error: function(result) {
+				            console.log(error)
+				        }
+				    })
+				})
+			})
+		</script>
+    </head>
+    <body>
+        <div class = 'container'>
+        	<div class = "container-classifier">
+	          	<h2>People On Stage Classifier: Are they 2020 presidential hopefuls or stand-up comedians?</h1>
+	         
+                <div>
+    				<span> Upload your image to find out. </span>
+                    <div class="tooltip"> <u> What is an appropriate image? </u></span>
+                        <div class="tooltipcontent"> 
+                            <span> A good picture is a single person on stage. </span>
+                            <div class='row'>
+                                <div class='column'>
+                                    <img class = "img-example" src="/static/img/example_good.jpeg">
+                                    <p> this is a good image </p>
+                                </div>
+                                <div class='column'>
+                                    <img class = "img-example" src="/static/img/example_bad.jpg">
+                                    <p> this is a bad image </p>
+                                </div>
+                            </div>
+                            <span> This model was trained to predict only one of the two categories, politician or comedian. If you upload a photo that is neither, the model will still try to make the best guess, but it would be nonsense!</span>
+                        </div>
+                    </div>
+                </div>
+				<div class = "container-upload">
+                    <input type="file" id="fileupload" name="file" multiple></input>
+				</div>
+
+				<div class='hidden' id = 'container-pred'>
+                    <div>
+                        <img id="imgUpload" class="img-thumbnail">
+                        <input type="hidden" name="filePath" id="filePath"></input>
+                    </div>
+                    <div>
+                    	<button type="submit" id = 'predict' class="btn btn-predict">Predict</button>
+                    </div>
+                    <h2 id='pred'>' '</h2>
+                </div>
+
+				<p class='txt-note'> Built using <u><a href="https://fast.ai">fast.ai</a></u>, trained on X google images of past presidential candidates and comedians. <br>
+				This fictitious application maaaay be recognizing specific faces. More work to be done. </p>
+			</div>
+
+
+
+            <div class='container-profile'>
+
+    			<div>
+                    <img class = 'img-profile' src="static/img/profile_pic.jpg" />
+                </div>
+
+    			<p>Hi! I’m Chung and I’m a data scientist hopeful living in Washington, DC. </p>
+
+    			<p>I like to bike everywhere, practice yoga ~daily, draw and bake often. Check out our bike blog <u>here</u>! </p>
+
+    			<p>My more technical interests include: programming in Python and R, machine learning and in particular learning about deep neural nets. </p>
+
+    			<p> 🥬 connect! </p>
+
+    			<p>Email: chungkim271@gmail.com <br>
+    			Insta: chungkim271 </p>
+
+            </div>
+
+            <p class='txt-note'> built with Flask </p>
+
+
+      </div>
+    </body>
+</html>

@@ -1,0 +1,114 @@
+
+body {
+    font-family: Consolas, monaco, monospace;
+    font-size:18px;
+    margin: 20px;
+}
+
+.container {
+    min-width:600px; 
+    width:50%;
+}
+
+#pred {
+    height: 35px;
+}
+
+.hidden {
+    visibility: hidden
+}
+
+::-webkit-file-upload-button {
+    background-color:black;
+    color:white;
+    font-size:16px;
+    font-family: Consolas, monaco, monospace;
+    width:200px;
+    height:32px;
+    border-style:solid;
+    border-color:black;
+}
+
+#fileupload {
+    width: 400px;
+    margin-top: 2em;
+    margin-bottom: 0.5em;
+    font-family: Consolas, monaco, monospace;
+}
+
+.container-profile {
+    padding-top:100px;
+}
+
+.img-profile {
+    width: 160px;
+    border-radius: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn {
+    background-color:black;
+    color:white;
+    font-size:16px;
+    font-family: Consolas, monaco, monospace;
+    height:32px;
+    border-style:solid;
+    border-color:black;
+}
+
+.btn-predict {
+    width:200px;
+}
+
+.img-example {
+    width:200px;
+}
+
+.img-thumbnail {
+    width: 200px; 
+    height: 200px;
+}
+
+.txt-note {
+    font-size:12px;
+}
+.column {
+  float: left;
+  width: 45%;
+  padding: 10px;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltipcontent {
+  visibility: hidden;
+  width: 500px;
+  background-color: white;
+  text-align: center;
+  border-radius: 6px;
+  border-style:solid;
+  border-width:1px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  top: 150%;
+  left: 50%;
+  margin-left: -60px;
+  padding:10px;
+}
+
+.tooltip:hover .tooltipcontent {
+  visibility: visible;
+}
