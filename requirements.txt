@@ -1,5 +1,6 @@
 aiohttp==3.6.2
 asyncio==3.4.3
+PIL==6.2.2
 Flask==1.1.1
 uvicorn==0.11.1
 gunicorn==20.0.4
