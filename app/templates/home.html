@@ -59,16 +59,17 @@
     <body>
         <div class = 'container'>
         	<div class = "container-classifier">
-	          	<h2>People On Stage Classifier: Are they 2020 presidential hopefuls or stand-up comedians?</h1>
+	          	<h2> <b>People On Stage Classifier</b>: Are they 2020 presidential hopefuls or stand-up comedians?</h1>
 	         
-                <div>
+
+                <div class='container-upload'>
     				<span> Upload your image to find out. </span>
                     <div class="tooltip"> <u> What is an appropriate image? </u></span>
                         <div class="tooltipcontent"> 
                             <span> A good picture is a single person on stage. </span>
                             <div class='row'>
                                 <div class='column'>
-                                    <img class = "img-example" src="/static/img/example_good.jpeg">
+                                    <img class = "img-example" src="/static/img/example_good.jpg">
                                     <p> this is a good image </p>
                                 </div>
                                 <div class='column'>
@@ -79,12 +80,12 @@
                             <span> This model was trained to predict only one of the two categories, politician or comedian. If you upload a photo that is neither, the model will still try to make the best guess, but it would be nonsense!</span>
                         </div>
                     </div>
+    				<div>
+                        <input type="file" id="fileupload" name="file" multiple></input>
+    				</div>
                 </div>
-				<div class = "container-upload">
-                    <input type="file" id="fileupload" name="file" multiple></input>
-				</div>
 
-				<div class='hidden' id = 'container-pred'>
+				<div class='hidden container-pred' id = 'container-pred'>
                     <div>
                         <img id="imgUpload" class="img-thumbnail">
                         <input type="hidden" name="filePath" id="filePath"></input>
@@ -95,13 +96,12 @@
                     <h2 id='pred'>' '</h2>
                 </div>
 
-				<p class='txt-note'> Built using <u><a href="https://fast.ai">fast.ai</a></u>, trained on X google images of past presidential candidates and comedians. <br>
-				This fictitious application maaaay be recognizing specific faces. More work to be done. </p>
+				<p class='txt-note'> Built using <u><a href="https://fast.ai">fast.ai</a></u>, trained on ~200 google images of past and current presidential candidates and comedians. This fictitious application maaaay be recognizing specific faces. More work to be done. </p>
 			</div>
 
+            <hr> 
 
-
-            <div class='container-profile'>
+            <div class='container-profile txt-profile'>
 
     			<div>
                     <img class = 'img-profile' src="static/img/profile_pic.jpg" />
@@ -113,10 +113,7 @@
 
     			<p>My more technical interests include: programming in Python and R, machine learning and in particular learning about deep neural nets. </p>
 
-    			<p> 🥬 connect! </p>
-
-    			<p>Email: chungkim271@gmail.com <br>
-    			Insta: chungkim271 </p>
+    			<p> 🥬 connect! Email: chungkim271@gmail.com </p> <br>
 
             </div>
 
