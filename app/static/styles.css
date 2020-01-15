@@ -38,7 +38,7 @@ hr {
 }
 
 ::-webkit-file-upload-button {
-    background-color:black !important;
+    background-color:black;
     color:white;
     font-size:16px;
     font-family: Consolas, monaco, monospace;
@@ -46,8 +46,6 @@ hr {
     height:32px;
     border-style:solid;
     border-color:black;
-    border-radius:0;
-
 }
 
 #fileupload {
@@ -101,11 +99,6 @@ hr {
     text-align:center;
     font-size:12px;
 }
-
-.txt-title{
-    font-size:26px;
-}
-
 .column {
   float: left;
   width: 45%;
