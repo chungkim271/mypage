@@ -111,7 +111,13 @@ hr {
   clear: both;
 }
 
-.tooltip {
+#txt-content {
+  /*visibility: hidden;*/
+  padding:2em;
+  display:none;
+}
+
+/*.tooltip {
   position: relative;
   display: inline-block;
   border-bottom: 1px dotted black;
@@ -132,8 +138,8 @@ hr {
   left: 50%;
   margin-left: -400px;
   padding:10px;
-}
+}*/
 
-.tooltip:hover .tooltipcontent {
+/*.tooltip:hover .tooltipcontent {
   visibility: visible;
-}
+}*/

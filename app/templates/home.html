@@ -2,59 +2,14 @@
 <html> 
     <head>
         <title> Chung Kim </title>
-    	<script src="/static/js/jquery-3.4.1.js"></script>
-		<script src="/static/js/jquery-ui.js"></script>
- 
+    	<script type="text/javascript" src="/static/js/jquery-3.4.1.js"></script>
+		<script type="text/javascript" src="/static/js/jquery-ui.js"></script>
 		<script type="text/javascript" src="/static/js/jquery.fileupload.js"></script>
 		<script type="text/javascript" src="/static/js/jquery.fileupload-process.js"></script>
 		<script type="text/javascript" src="/static/js/jquery.fileupload-ui.js"></script>	
+        <script type="text/javascript" src="/static/js/custom.js"></script>
 
         <link rel="stylesheet" href="/static/styles.css">
-		<script>
-			$(function() {
-			    $('#fileupload').fileupload({
-                    width: 300,
-			        url: 'upload',
-			        dataType: 'json',
-                    replaceFileInput:false,
-			        add: function(e, data) {
-			            data.submit()
-			        },
-			        success: function(response, status) {
-		                console.log(response.filename)
-						var filePath = 'static/uploads/' + response.filename
-						$('#imgUpload').attr('src',filePath)
-                        $('#container-pred').removeClass("hidden")
-						$('#filePath').text(filePath)
-                        $('#pred').text(' ')
-			        },
-			        error: function(error) {
-			            console.log(error)
-			        }
-			    })
-			})
-			$(function() {
-				$('#predict').click(function(e) {
-					e.preventDefault()
-                    $('#predict').text('Predicting...')
-                    data = {f_name:$('#filePath')[0].textContent}
-				    $.ajax({
-				        type: "POST",
-				        url: "/predict",
-                        data: JSON.stringify(data, null, '\t'),
-                        contentType: 'application/json;charset=UTF-8',
-				        success: function(response, status) {
-				        	pred = response.pred
-				        	$('#pred').text(pred)
-                            $('#predict').text('Predict')
-				        },
-				        error: function(result) {
-				            console.log(error)
-				        }
-				    })
-				})
-			})
-		</script>
     </head>
     <body>
         <div class = 'container'>
@@ -63,9 +18,9 @@
 	         
 
                 <div class='container-upload'>
-    				<span> Upload your image to find out. </span>
-                    <div class="tooltip"> <u> What is an appropriate image? </u></span>
-                        <div class="tooltipcontent"> 
+    				<span> Upload your image to find out. 
+                    <u id="slide-down"> What is an appropriate image? </u> </span>
+                        <div id="txt-content"> 
                             <span> A good picture is a single person on stage. </span>
                             <div class='row'>
                                 <div class='column'>
@@ -79,7 +34,6 @@
                             </div>
                             <span> This model was trained to predict only one of the two categories, politician or comedian. If you upload a photo that is neither, the model will still try to make the best guess, but it would be nonsense!</span>
                         </div>
-                    </div>
     				<div>
                         <input type="file" id="fileupload" name="file" multiple></input>
     				</div>
