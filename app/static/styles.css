@@ -112,34 +112,6 @@ hr {
 }
 
 #txt-content {
-  /*visibility: hidden;*/
   padding:2em;
   display:none;
 }
-
-/*.tooltip {
-  position: relative;
-  display: inline-block;
-  border-bottom: 1px dotted black;
-}
-
-.tooltip .tooltipcontent {
-  visibility: hidden;
-  width: 500px;
-  background-color: white;
-  text-align: center;
-  border-radius: 6px;
-  border-style:solid;
-  border-width:1px;
-  padding: 5px 0;
-  position: absolute;
-  z-index: 1;
-  top: 150%;
-  left: 50%;
-  margin-left: -400px;
-  padding:10px;
-}*/
-
-/*.tooltip:hover .tooltipcontent {
-  visibility: visible;
-}*/
