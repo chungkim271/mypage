@@ -10,17 +10,17 @@ body {
     width: 650px;
 }
 
+@media screen and (max-width: 1000px) {
+    .container {
+      width:90%;
+    }
+}
+
 .container-upload {
     border: solid;
     margin: 5px;
     padding: 5px;
     border-width: 2px;
-}
-
-@media (max-width: 767px) {
-    .container {
-      width:100%;
-    }
 }
 
 hr {
@@ -37,20 +37,23 @@ hr {
     visibility: hidden
 }
 
-::-webkit-file-upload-button {
+#fileupload {
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+}
+
+.label-fileupload {
+    display:block;
     background-color:black;
+    margin-top:0.5em;
     color:white;
     font-size:16px;
     font-family: Consolas, monaco, monospace;
+    text-align:center;
     width:200px;
-    height:32px;
-    border-style:solid;
+    line-height:32px;
     border-color:black;
-}
-
-#fileupload {
-    width: 400px;
-    font-family: Consolas, monaco, monospace;
 }
 
 .container-profile {

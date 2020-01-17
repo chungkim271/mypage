@@ -14,7 +14,7 @@
     <body>
         <div class = 'container'>
         	<div class = "container-classifier">
-	          	<h2> <b>People On Stage Classifier</b>: Are they 2020 presidential hopefuls or stand-up comedians?</h1>
+	          	<h1> <b>People On Stage Classifier</b>: Are they 2020 presidential hopefuls or stand-up comedians?</h1>
 	         
 
                 <div class='container-upload'>
@@ -34,9 +34,10 @@
                             </div>
                             <span> This model was trained to predict only one of the two categories, politician or comedian. If you upload a photo that is neither, the model will still try to make the best guess, but it would be nonsense!</span>
                         </div>
-    				<div>
-                        <input type="file" id="fileupload" name="file" multiple></input>
-    				</div>
+                        <div>
+                            <label for="fileupload" class='label-fileupload'>Select Image</label>
+                            <input type="file" id="fileupload" name="file"></input>
+                        </div>
                 </div>
 
 				<div class='hidden container-pred' id = 'container-pred'>

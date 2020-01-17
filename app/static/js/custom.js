@@ -8,7 +8,6 @@ $(function() {
             data.submit()
         },
         success: function(response, status) {
-            console.log(response.filename)
             var filePath = 'static/uploads/' + response.filename
             $('#imgUpload').attr('src',filePath)
             $('#container-pred').removeClass("hidden")
