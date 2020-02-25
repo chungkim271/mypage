@@ -31,12 +31,10 @@ async def setup_learner():
             raise
 
 # Set up async so the page renders while learner is downloaded.
-loop = asyncio.new_event_loop()    
-asyncio.set_event_loop(loop)
+loop = asyncio.get_event_loop()
 tasks = [asyncio.ensure_future(setup_learner())]
 learn = loop.run_until_complete(asyncio.gather(*tasks))[0]
 loop.close()
-
 
 @app.route('/')
 def home():
