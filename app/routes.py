@@ -3,10 +3,13 @@ import aiohttp, asyncio, uvicorn, os, json
 from fastai import *
 from fastai.vision import *
 from app import app
+import app.module.dropbox_api as dropbox_api
 
-export_file_url = 'https://www.dropbox.com/s/7ayt32l4n0k4cr2/people_on_stage_classifier.pkl?raw=1'
-export_file_name = 'people_on_stage_classifier.pkl'
-path = Path(__file__).parent
+dropbox_access_token = app.config['DROPBOX_ACCESS_TOKEN']
+export_file_url = app.config['EXPORT_FILE_URL']
+export_filename = app.config['EXPORT_FILENAME']
+
+path = Path(__file__).parent # root
 
 async def download_file(url, dest):
     if dest.exists(): return
@@ -18,9 +21,9 @@ async def download_file(url, dest):
 
 
 async def setup_learner():
-    await download_file(export_file_url, path / export_file_name)
+    await download_file(export_file_url, path / export_filename)
     try:
-        learn = load_learner(path, export_file_name)
+        learn = load_learner(path, export_filename)
         return learn
     except RuntimeError as e:
         if len(e.args) > 0 and 'CPU-only machine' in e.args[0]:
@@ -31,7 +34,8 @@ async def setup_learner():
             raise
 
 # Set up async so the page renders while learner is downloaded.
-loop = asyncio.get_event_loop()
+loop = asyncio.new_event_loop()    
+asyncio.set_event_loop(loop)
 tasks = [asyncio.ensure_future(setup_learner())]
 learn = loop.run_until_complete(asyncio.gather(*tasks))[0]
 loop.close()
@@ -56,6 +60,14 @@ def predict():
     pred = pred[0].upper() + pred[1:-1]
     return {'pred': str(pred)}
 
+@app.route('/upload_to_dropbox', methods=['POST'])
+def upload_to_dropbox():
+    # upload the misclassified image to dropbox
+    f_name = json.loads(request.data)['f_name']
+    transferData = dropbox_api.TransferData(dropbox_access_token)
+    dropbox_filepath = '/misclassification/'
+    transferData.upload_file(os.path.join(path, f_name), dropbox_filepath + dropbox_api.timestamp_filename(f_name))
+    return {}
 
 if __name__ == '__main__':
     uvicorn.run(app=app, host='0.0.0.0', port=5000, log_level="info")

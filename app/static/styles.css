@@ -89,6 +89,10 @@ hr {
     width:200px;
 }
 
+.btn-validate:hover {
+    text-decoration: underline;
+}
+
 .img-example {
     width:200px;
 }
